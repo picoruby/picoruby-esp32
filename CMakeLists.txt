@@ -10,7 +10,7 @@ idf_component_register(
     ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-mrubyc/lib/mrubyc/src
     ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-machine/include
     ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-filesystem-fat/ports/esp32
-  REQUIRES esp_driver_uart
+  REQUIRES esp_driver_uart spi_flash
 )
 
 add_definitions(
@@ -19,6 +19,7 @@ add_definitions(
   -DMRBC_USE_FLOAT=2
   -DMRC_CUSTOM_ALLOC
   -DMRBC_CONVERT_CRLF=1
+  -DUSE_FAT_FLASH_DISK
   -DNDEBUG
 )
 
