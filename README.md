@@ -81,4 +81,4 @@ Currently, this project is tested in the following environment only:
 
 ## License
 
-[picoruby-esp32](https://github.com/yuuu/picoruby-esp32) is released under the [MIT License](https://github.com/yuuu/picoruby-esp32/blob/main/LICENSE).
+[picoruby-esp32](https://github.com/picoruby/picoruby-esp32) is released under the [MIT License](https://github.com/picoruby/picoruby-esp32/blob/master/LICENSE).

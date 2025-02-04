@@ -1,5 +1,5 @@
 version: "0.0.2"
 description: "This component for ESP-IDF builds the open-source software PicoRuby into a static library, allowing you to link it and run PicoRuby seamlessly on their microcontroller boards."
-url: "https://github.com/yuuu/picoruby-esp32"
-issues: "https://github.com/yuuu/picoruby-esp32/issues"
-repository: "https://github.com/yuuu/picoruby-esp32.git"
+url: "https://github.com/picoruby/picoruby-esp32"
+issues: "https://github.com/picoruby/picoruby-esp32/issues"
+repository: "https://github.com/picoruby/picoruby-esp32.git"
