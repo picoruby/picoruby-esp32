@@ -13,16 +13,10 @@ Prepare your project by referring to [this page](https://docs.espressif.com/proj
 Clone this repository into the `components` directory of your project using Git Submodule.
 
 ```sh
-$ git submodule add https://github.com/yuuu/picoruby-esp32.git components/picoruby-esp32
+$ git submodule add https://github.com/picoruby/picoruby-esp32.git components/picoruby-esp32
 ```
 
 ### Setup
-
-Run the following shell script to build PicoRuby:
-
-```sh
-$ ./components/picoruby-esp32/install.sh
-```
 
 Open your `main/CMakeLists.txt` file in an editor. Add `picoruby-esp32` to the `REQUIRES` field.
 
