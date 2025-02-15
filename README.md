@@ -18,12 +18,6 @@ $ git submodule add https://github.com/picoruby/picoruby-esp32.git components/pi
 
 ### Setup
 
-Run the following shell script to build PicoRuby:
-
-```sh
-$ ./components/picoruby-esp32/install.sh
-```
-
 Open your `main/CMakeLists.txt` file in an editor. Add `picoruby-esp32` to the `REQUIRES` field.
 
 ```cmake

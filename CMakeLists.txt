@@ -53,7 +53,7 @@ add_custom_target(
   mrbdir ALL
   COMMAND ${CMAKE_COMMAND} -E make_directory ${COMPONENT_DIR}/mrb
 )
-add_dependencies(${COMPONENT_LIB} mrbdir)
+add_dependencies(mrbdir picoruby)
 
 set(RUBY_FILES main_task)
 set(PICORBC ${COMPONENT_DIR}/picoruby/bin/picorbc)
@@ -63,7 +63,8 @@ add_custom_target(${rb}
   COMMAND ${PICORBC} -B${rb} -o${COMPONENT_DIR}/mrb/${rb}.c ${COMPONENT_DIR}/mrblib/${rb}.rb
   DEPENDS mrbdir
 )
+add_dependencies(${rb} picoruby)
 endforeach(rb)
 
 add_custom_target(generate_files ALL DEPENDS mrbdir ${RUBY_FILES})
-add_dependencies(${COMPONENT_LIB} generate_files)
+add_dependencies(generate_files picoruby)
