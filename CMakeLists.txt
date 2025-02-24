@@ -11,8 +11,11 @@ idf_component_register(
     ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-mrubyc/lib/mrubyc/src
     ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-machine/include
     ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-filesystem-fat/ports/esp32
-  REQUIRES esp_driver_uart spi_flash
-  PRIV_REQUIRES esp_driver_gpio
+  PRIV_REQUIRES
+    esp_driver_gpio
+    esp_timer
+    esp_driver_uart
+    spi_flash
 )
 
 add_definitions(
