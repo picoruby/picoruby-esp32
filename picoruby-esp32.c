@@ -20,8 +20,9 @@ void picoruby_esp32(void)
 
   mrbc_init(heap_pool, HEAP_SIZE);
 
-  mrbc_tcb *tcb = mrbc_create_task(main_task, 0);
-  mrbc_vm *vm = &tcb->vm;
+  mrbc_tcb *main_tcb = mrbc_create_task(main_task, 0);
+  mrbc_set_task_name(main_tcb, "main_task");
+  mrbc_vm *vm = &main_tcb->vm;
 
   picoruby_init_require(vm);
   picoruby_init_executables(vm);
