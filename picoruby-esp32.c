@@ -1,8 +1,7 @@
 #include <inttypes.h>
 #include "esp_task_wdt.h"
 
-#include "picoruby/build/esp32/mrbgems/picogem_init.c"
-#include "picoruby/build/esp32/mrbgems/executables_init.c"
+#include "picoruby.h"
 
 #include <mrubyc.h>
 #include "mrb/main_task.c"
