@@ -8,6 +8,7 @@ idf_component_register(
     ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-gpio/ports/esp32/gpio.c
   INCLUDE_DIRS
     ${COMPONENT_DIR}
+    ${COMPONENT_DIR}/picoruby/include
     ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-mrubyc/lib/mrubyc/src
     ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-machine/include
     ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-filesystem-fat/ports/esp32
@@ -26,6 +27,9 @@ add_definitions(
   -DMRBC_CONVERT_CRLF=1
   -DUSE_FAT_FLASH_DISK
   -DNDEBUG
+
+  # for picoruby.h
+  -DPICORB_VM_MRUBYC
 )
 
 set(PICORUBY_DIR ${COMPONENT_DIR}/picoruby)
@@ -46,6 +50,13 @@ add_prebuilt_library(
   REQUIRES ${COMPONENT_NAME}
 )
 target_link_libraries(${COMPONENT_LIB} PRIVATE libmruby)
+target_include_directories(
+  ${COMPONENT_LIB}
+  PRIVATE
+    ${COMPONENT_DIR}/picoruby/build/repos/esp32/mruby-compiler2/include
+    ${COMPONENT_DIR}/picoruby/build/repos/esp32/mruby-compiler2/lib/prism/include
+    ${COMPONENT_DIR}/picoruby/build/esp32/mrbgems
+)
 
 add_custom_target(
   picoruby DEPENDS ${LIBMRUBY_FILE}
