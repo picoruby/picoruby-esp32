@@ -68,9 +68,11 @@ Refer to this project for examples.
 Currently, this project is tested in the following environment only:
 
 - **Build OS**:
+  - Linux
   - macOS
 - **Device**:
   - ESP32-DevKitC(esp32)
+  - ESP32-S3-DevKitC(esp32s3)
   - M5Stamp C3 Mate(esp32c3)
 
 ## License
