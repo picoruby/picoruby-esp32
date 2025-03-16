@@ -73,6 +73,7 @@ Currently, this project is tested in the following environment only:
 - **Device**:
   - ESP32-DevKitC(esp32)
   - ESP32-S3-DevKitC(esp32s3)
+  - ESP32-C6-DevKitC(esp32c6)
   - M5Stamp C3 Mate(esp32c3)
 
 ## License
