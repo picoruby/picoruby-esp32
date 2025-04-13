@@ -7,11 +7,9 @@ STDOUT = IO
 # Setup flash disk
 begin
   STDIN.echo = false
-  $shell = Shell.new(clean: true)
-
   puts "Initializing FLASH disk as the root volume... "
-  $shell.setup_root_volume(:flash, label: 'storage')
-  $shell.setup_system_files
+  Shell.setup_root_volume(:flash, label: 'storage')
+  Shell.setup_system_files
   puts "Available"
 rescue => e
   puts "Not available"
@@ -27,6 +25,7 @@ begin
     load "/home/app.rb"
   end
 
+  $shell = Shell.new(clean: true)
   puts "Starting shell...\n\n"
 
   $shell.show_logo
