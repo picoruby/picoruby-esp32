@@ -14,9 +14,6 @@ static uint8_t heap_pool[HEAP_SIZE];
 
 void picoruby_esp32(void)
 {
-  // disable TWDT
-  esp_task_wdt_deinit();
-
   mrbc_init(heap_pool, HEAP_SIZE);
 
   mrbc_tcb *main_tcb = mrbc_create_task(main_task, 0);
