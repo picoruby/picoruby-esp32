@@ -1,8 +1,9 @@
-require "shell"
 require 'machine'
-
-STDIN = IO
+require "watchdog"
+Watchdog.disable
+require "shell"
 STDOUT = IO
+STDIN = IO
 
 # Setup flash disk
 begin
