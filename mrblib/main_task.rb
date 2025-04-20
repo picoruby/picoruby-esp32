@@ -1,6 +1,7 @@
-require "shell"
 require 'machine'
-
+require "watchdog"
+Watchdog.disable
+require "shell"
 STDIN = IO
 STDOUT = IO
 
