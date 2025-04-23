@@ -10,6 +10,7 @@ idf_component_register(
     ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-spi/ports/esp32/spi.c
     ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-rng/ports/esp32/rng.c
     ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-pwm/ports/esp32/pwm.c
+    ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-rmt/ports/esp32/rmt.c
     ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-watchdog/ports/esp32/watchdog.c
   INCLUDE_DIRS
     ${COMPONENT_DIR}
@@ -22,6 +23,7 @@ idf_component_register(
     esp_driver_uart
     esp_driver_spi
     esp_driver_ledc
+    esp_driver_rmt
     esp_adc
     esp_timer
     esp_hw_support
