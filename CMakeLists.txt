@@ -64,8 +64,8 @@ target_link_libraries(${COMPONENT_LIB} PRIVATE libmruby)
 target_include_directories(
   ${COMPONENT_LIB}
   PRIVATE
-    ${COMPONENT_DIR}/picoruby/build/repos/esp32/mruby-compiler2/include
-    ${COMPONENT_DIR}/picoruby/build/repos/esp32/mruby-compiler2/lib/prism/include
+    ${COMPONENT_DIR}/picoruby/mrbgems/mruby-compiler2/include
+    ${COMPONENT_DIR}/picoruby/mrbgems/mruby-compiler2/lib/prism/include
     ${COMPONENT_DIR}/picoruby/build/esp32/mrbgems
 )
 
