@@ -20,6 +20,5 @@ void picoruby_esp32(void)
   mrbc_vm *vm = &main_tcb->vm;
 
   picoruby_init_require(vm);
-  picoruby_init_executables(vm);
   mrbc_run();
 }
