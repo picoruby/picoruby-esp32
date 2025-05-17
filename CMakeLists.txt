@@ -18,6 +18,8 @@ idf_component_register(
     ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-mrubyc/lib/mrubyc/src
     ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-machine/include
     ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-filesystem-fat/ports/esp32
+    ${COMPONENT_DIR}/picoruby/mrbgems/mruby-compiler2/include
+    ${COMPONENT_DIR}/picoruby/mrbgems/mruby-compiler2/lib/prism/include
   PRIV_REQUIRES
     esp_driver_gpio
     esp_driver_uart
