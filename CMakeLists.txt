@@ -29,11 +29,11 @@ idf_component_register(
     esp_driver_spi
     esp_driver_ledc
     esp_driver_rmt
+    esp_driver_i2c
     esp_adc
     esp_timer
     esp_hw_support
     spi_flash
-    driver
 )
 
 add_definitions(
