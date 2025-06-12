@@ -3,5 +3,6 @@ updates:
   - package-ecosystem: 'gitsubmodule'
     directory: '/'
     schedule:
-      interval: "cron"
-      cronjob: "* * * * *"
+      interval: "daily"
+      time: "05:00"
+      timezone: "Asia/Tokyo"
