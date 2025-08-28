@@ -93,7 +93,7 @@ set(PICORBC ${COMPONENT_DIR}/picoruby/bin/picorbc)
 
 foreach(rb ${RUBY_FILES})
 add_custom_target(${rb}
-  COMMAND ${PICORBC} -B${rb} -o${COMPONENT_DIR}/mrb/${rb}.c ${COMPONENT_DIR}/mrblib/${rb}.rb
+  COMMAND echo "Compile Ruby files." && ${PICORBC} -B${rb} -o${COMPONENT_DIR}/mrb/${rb}.c ${COMPONENT_DIR}/mrblib/${rb}.rb && ls ${COMPONENT_DIR}/mrb
   DEPENDS mrbdir
 )
 add_dependencies(${rb} picoruby)
