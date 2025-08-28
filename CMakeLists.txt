@@ -82,22 +82,23 @@ add_custom_target(
 add_dependencies(${COMPONENT_LIB} picoruby)
 
 # Compile Ruby files
-add_custom_target(
-  mrbdir ALL
-  COMMAND ${CMAKE_COMMAND} -E make_directory ${COMPONENT_DIR}/mrb
-)
-add_dependencies(mrbdir picoruby)
-
 set(RUBY_FILES main_task)
 set(PICORBC ${COMPONENT_DIR}/picoruby/bin/picorbc)
+set(GENERATED_C_FILES "")
 
 foreach(rb ${RUBY_FILES})
-add_custom_target(${rb}
-  COMMAND echo "Compile Ruby files." && ${PICORBC} -B${rb} -o${COMPONENT_DIR}/mrb/${rb}.c ${COMPONENT_DIR}/mrblib/${rb}.rb && ls ${COMPONENT_DIR}/mrb
-  DEPENDS mrbdir
-)
-add_dependencies(${rb} picoruby)
+  set(C_FILE ${COMPONENT_DIR}/mrb/${rb}.c)
+  set(RB_FILE ${COMPONENT_DIR}/mrblib/${rb}.rb)
+  add_custom_command(
+    OUTPUT ${C_FILE}
+    COMMAND ${CMAKE_COMMAND} -E echo "Compiling ${RB_FILE}..."
+    COMMAND ${CMAKE_COMMAND} -E make_directory ${COMPONENT_DIR}/mrb
+    COMMAND ${PICORBC} -B${rb} -o${C_FILE} ${RB_FILE}
+    DEPENDS picoruby ${RB_FILE}
+    COMMENT "Compiling ${RB_FILE}"
+    VERBATIM
+  )
+  list(APPEND GENERATED_C_FILES ${C_FILE})
 endforeach(rb)
 
-add_custom_target(generate_files ALL DEPENDS mrbdir ${RUBY_FILES})
-add_dependencies(generate_files picoruby)
+target_sources(${COMPONENT_LIB} PRIVATE ${GENERATED_C_FILES})
