@@ -1,3 +1,6 @@
+# Create the include directory in advance
+file(MAKE_DIRECTORY ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-mbedtls/lib/mbedtls/include)
+
 idf_component_register(
   SRCS
     ${COMPONENT_DIR}/picoruby-esp32.c
