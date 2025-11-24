@@ -4,6 +4,7 @@ file(MAKE_DIRECTORY ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-mbedtls/lib/mbedt
 idf_component_register(
   SRCS
     ${COMPONENT_DIR}/picoruby-esp32.c
+    ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-esp32/ports/esp32.c
     ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-machine/ports/esp32/machine.c
     ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-machine/ports/common/machine.c
     ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-io-console/ports/esp32/io-console.c
@@ -46,6 +47,8 @@ idf_component_register(
     esp_timer
     esp_hw_support
     spi_flash
+    nvs_flash
+    esp_wifi
 )
 
 add_definitions(
@@ -55,6 +58,7 @@ add_definitions(
   -DMRC_CUSTOM_ALLOC
   -DMRBC_CONVERT_CRLF=1
   -DUSE_FAT_FLASH_DISK
+  -DESP32_PLATFORM
   -DNDEBUG
 
   # for picoruby.h
