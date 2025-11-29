@@ -6,8 +6,10 @@
 #include "mrb/main_task.c"
 
 #ifndef HEAP_SIZE
-#define HEAP_SIZE (1024 * 128)
+#define HEAP_SIZE (1024 * 100)
 #endif
+
+static uint8_t heap_pool[HEAP_SIZE];
 
 void
 initialize_nvs(void)
@@ -24,8 +26,6 @@ void
 picoruby_esp32(void)
 {
   initialize_nvs();
-
-  uint8_t* heap_pool = malloc(HEAP_SIZE);
   mrbc_init(heap_pool, HEAP_SIZE);
 
   mrbc_tcb *main_tcb = mrbc_create_task(main_task, 0);
@@ -34,6 +34,4 @@ picoruby_esp32(void)
 
   picoruby_init_require(vm);
   mrbc_run();
-
-  free(heap_pool);
 }
