@@ -6,7 +6,7 @@
 #include "mrb/main_task.c"
 
 #ifndef HEAP_SIZE
-#define HEAP_SIZE (1024 * 100)
+#define HEAP_SIZE (1024 * 128)
 #endif
 
 static uint8_t heap_pool[HEAP_SIZE];
