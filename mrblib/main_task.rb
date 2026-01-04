@@ -17,6 +17,8 @@ rescue => e
   puts "#{e.message} (#{e.class})"
 end
 
+GC.start
+
 begin
   if File.exist?("/home/app.mrb")
     puts "Loading app.mrb"
@@ -25,6 +27,8 @@ begin
     puts "Loading app.rb"
     load "/home/app.rb"
   end
+
+  GC.start
 
   $shell = Shell.new(clean: true)
   puts "Starting shell...\n\n"
