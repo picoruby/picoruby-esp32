@@ -14,7 +14,7 @@
 #if defined(CONFIG_IDF_TARGET_ESP32S3)
 #define HEAP_SIZE (1024 * 180)
 #elif defined(CONFIG_IDF_TARGET_ESP32C3)
-#define HEAP_SIZE (1024 * 160)
+#define HEAP_SIZE (1024 * 120)
 #else
 #define HEAP_SIZE (1024 * 120)
 #endif
