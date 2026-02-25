@@ -18,6 +18,7 @@ MRuby::CrossBuild.new("esp32") do |conf|
   conf.cc.defines << "MRBC_CONVERT_CRLF=1"
   conf.cc.defines << "USE_FAT_FLASH_DISK"
   conf.cc.defines << "ESP32_PLATFORM"
+  conf.cc.defines << "PICORUBY_INT64"
   conf.cc.defines << "NDEBUG"
 
   conf.picoruby(alloc_libc: false)
@@ -45,4 +46,5 @@ MRuby::CrossBuild.new("esp32") do |conf|
   conf.gem core: 'picoruby-socket'
   conf.gem core: 'picoruby-mqtt'
   conf.gem core: 'picoruby-adafruit_sk6812'
+  conf.gem core: 'picoruby-net-ntp'
 end
