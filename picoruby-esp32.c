@@ -11,13 +11,7 @@
 #include "mrb/main_task.c"
 
 #ifndef HEAP_SIZE
-#if defined(CONFIG_IDF_TARGET_ESP32S3)
-#define HEAP_SIZE (1024 * 180)
-#elif defined(CONFIG_IDF_TARGET_ESP32C3)
-#define HEAP_SIZE (1024 * 120)
-#else
-#define HEAP_SIZE (1024 * 120)
-#endif
+#define HEAP_SIZE (1024 * 100)
 #endif
 
 static uint8_t heap_pool[HEAP_SIZE];
