@@ -17,9 +17,15 @@ rescue => e
   puts "#{e.message} (#{e.class})"
 end
 
-GC.start
-
 begin
+  if Machine.wifi_available?
+    ARGV[0] = "--check-auto-connect"
+    load "/bin/wifi_connect"
+    ARGV.clear
+  end
+
+  GC.start
+
   if File.exist?("/home/app.mrb")
     puts "Loading app.mrb"
     load "/home/app.mrb"
