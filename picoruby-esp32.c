@@ -1,5 +1,7 @@
 #include <inttypes.h>
 #include <nvs_flash.h>
+#include <esp_heap_caps.h>
+#include <esp_psram.h>
 #include "picoruby.h"
 
 #if defined(PICORB_VM_MRUBYC)
@@ -11,17 +13,22 @@
 #include "mrb/main_task.c"
 
 #ifndef HEAP_SIZE
+#if defined(CONFIG_SPIRAM)
+#define HEAP_SIZE (1024 * 1024)
+#else
 #define HEAP_SIZE (1024 * 100)
 #endif
+#endif
 
-static uint8_t heap_pool[HEAP_SIZE];
+uint8_t *heap_pool = NULL;
+uint32_t caps = MALLOC_CAP_INTERNAL;
 
 #if defined(PICORB_VM_MRUBY)
 mrb_state *global_mrb = NULL;
 #endif
 
 void
-initialize_nvs(void)
+setup(void)
 {
   esp_err_t ret = nvs_flash_init();
   if (ret == ESP_ERR_NVS_NO_FREE_PAGES || ret == ESP_ERR_NVS_NEW_VERSION_FOUND) {
@@ -29,12 +36,32 @@ initialize_nvs(void)
     ret = nvs_flash_init();
   }
   ESP_ERROR_CHECK(ret);
+
+#if defined(CONFIG_SPIRAM)
+  caps = MALLOC_CAP_SPIRAM;
+#endif
+  heap_pool = heap_caps_malloc(HEAP_SIZE, caps);
+  if (!heap_pool) {
+    printf("Failed to allocate heap pool\n");
+    return;
+  }
+}
+
+void
+teardown(void)
+{
+  if (heap_pool) {
+    heap_caps_free(heap_pool);
+    heap_pool = NULL;
+  }
+
+  nvs_flash_deinit();
 }
 
 void
 picoruby_esp32(void)
 {
-  initialize_nvs();
+  setup();
 
 #if defined(PICORB_VM_MRUBYC)
   mrbc_init(heap_pool, HEAP_SIZE);
@@ -65,4 +92,6 @@ picoruby_esp32(void)
   mrb_close(mrb);
   mrc_ccontext_free(cc);
 #endif
+
+  teardown();
 }
