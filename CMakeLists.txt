@@ -89,6 +89,7 @@ idf_component_register(
     spi_flash
     nvs_flash
     esp_wifi
+    esp_psram
 )
 
 add_definitions(
