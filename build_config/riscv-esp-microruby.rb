@@ -22,7 +22,7 @@ MRuby::CrossBuild.new('esp32-microruby') do |conf|
   conf.cc.defines << 'NDEBUG'
   conf.cc.defines << 'ESP32_PLATFORM'
 
-  if ENV['PICORUBY_DEBUG']
+  if ENV['PICORB_DEBUG']
     conf.cc.defines << 'ESTALLOC_DEBUG'
     conf.enable_debug
   end
