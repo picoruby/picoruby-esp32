@@ -35,38 +35,47 @@ else()
   )
 endif()
 
+set(SRC_LIST
+  ${COMPONENT_DIR}/picoruby-esp32.c
+  ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-machine/ports/esp32/machine.c
+  ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-machine/ports/common/machine.c
+  ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-io-console/ports/esp32/io-console.c
+  ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-filesystem-fat/ports/esp32/flash_disk.c
+  ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-littlefs/ports/esp32/flash_hal.c
+  ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-env/ports/esp32/env.c
+  ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-gpio/ports/esp32/gpio.c
+  ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-adc/ports/esp32/adc.c
+  ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-spi/ports/esp32/spi.c
+  ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-rng/ports/esp32/rng.c
+  ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-pwm/ports/esp32/pwm.c
+  ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-rmt/ports/esp32/rmt.c
+  ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-watchdog/ports/esp32/watchdog.c
+  ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-mbedtls/ports/esp32/timing_alt.c
+  ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-mbedtls/ports/common/cipher.c
+  ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-mbedtls/ports/common/cmac.c
+  ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-mbedtls/ports/common/digest.c
+  ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-mbedtls/ports/common/hmac.c
+  ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-mbedtls/ports/common/pkey.c
+  ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-mbedtls/ports/common/md.c
+  ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-socket/ports/esp32/net_helpers.c
+  ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-socket/ports/esp32/ssl_socket.c
+  ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-socket/ports/esp32/tcp_server.c
+  ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-socket/ports/esp32/tcp_socket.c
+  ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-socket/ports/esp32/udp_socket.c
+  ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-i2c/ports/esp32/i2c.c
+  ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-uart/ports/esp32/uart.c
+  ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-require/ports/esp32/platform.c
+)
+
+if(CONFIG_ESP_WIFI_ENABLED)
+  list(APPEND SRC_LIST
+    ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-esp32/ports/esp32.c
+  )
+endif()
+
 idf_component_register(
   SRCS
-    ${COMPONENT_DIR}/picoruby-esp32.c
-    ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-esp32/ports/esp32.c
-    ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-machine/ports/esp32/machine.c
-    ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-machine/ports/common/machine.c
-    ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-io-console/ports/esp32/io-console.c
-    ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-filesystem-fat/ports/esp32/flash_disk.c
-    ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-littlefs/ports/esp32/flash_hal.c
-    ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-env/ports/esp32/env.c
-    ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-gpio/ports/esp32/gpio.c
-    ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-adc/ports/esp32/adc.c
-    ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-spi/ports/esp32/spi.c
-    ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-rng/ports/esp32/rng.c
-    ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-pwm/ports/esp32/pwm.c
-    ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-rmt/ports/esp32/rmt.c
-    ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-watchdog/ports/esp32/watchdog.c
-    ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-mbedtls/ports/esp32/timing_alt.c
-    ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-mbedtls/ports/common/cipher.c
-    ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-mbedtls/ports/common/cmac.c
-    ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-mbedtls/ports/common/digest.c
-    ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-mbedtls/ports/common/hmac.c
-    ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-mbedtls/ports/common/pkey.c
-    ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-mbedtls/ports/common/md.c
-    ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-socket/ports/esp32/net_helpers.c
-    ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-socket/ports/esp32/ssl_socket.c
-    ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-socket/ports/esp32/tcp_server.c
-    ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-socket/ports/esp32/tcp_socket.c
-    ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-socket/ports/esp32/udp_socket.c
-    ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-i2c/ports/esp32/i2c.c
-    ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-uart/ports/esp32/uart.c
-    ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-require/ports/esp32/platform.c
+    ${SRC_LIST}
   INCLUDE_DIRS
     ${COMPONENT_DIR}
     ${COMPONENT_DIR}/picoruby/include
@@ -106,11 +115,18 @@ add_definitions(
 set(PICORUBY_DIR ${COMPONENT_DIR}/picoruby)
 set(LIBMRUBY_FILE ${PICORUBY_DIR}/build/${LIBMRUBY_PATH}/lib/libmruby.a)
 
+# Expose sdkconfig values to build config via env vars
+set(MRUBY_ENV
+  MRUBY_CONFIG=${MRUBY_CONFIG_STRING}
+  CONFIG_IDF_TARGET=${CONFIG_IDF_TARGET}
+  CONFIG_ESP_WIFI_ENABLED=${CONFIG_ESP_WIFI_ENABLED}
+)
+
 # Build PicoRuby
 add_custom_command(
   OUTPUT ${LIBMRUBY_FILE}
-  COMMAND ${CMAKE_COMMAND} -E echo "MRUBY_CONFIG=${MRUBY_CONFIG_STRING} rake"
-  COMMAND ${CMAKE_COMMAND} -E env MRUBY_CONFIG=${MRUBY_CONFIG_STRING} rake
+  COMMAND ${CMAKE_COMMAND} -E echo ${MRUBY_ENV} rake
+  COMMAND ${CMAKE_COMMAND} -E env ${MRUBY_ENV} rake
   WORKING_DIRECTORY ${PICORUBY_DIR}
   COMMENT "PicoRuby build"
   VERBATIM
