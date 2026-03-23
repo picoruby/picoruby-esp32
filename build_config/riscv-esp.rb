@@ -40,7 +40,7 @@ MRuby::CrossBuild.new("esp32") do |conf|
   conf.gem core: 'picoruby-pwm'
 
   # others
-  conf.gem core: 'picoruby-esp32' unless ENV['CONFIG_ESP_WIFI_ENABLED'].to_s.empty?
+  conf.gem core: 'picoruby-esp32'
   conf.gem core: 'picoruby-rmt'
   conf.gem core: 'picoruby-mbedtls'
   conf.gem core: 'picoruby-socket'
