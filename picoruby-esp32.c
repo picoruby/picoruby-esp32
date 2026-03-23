@@ -84,7 +84,7 @@ picoruby_esp32(void)
     hal_write(1, msg, strlen(msg));
   }
   else {
-    mrb_tasks_run(mrb);
+    mrb_task_run(mrb);
   }
   if (mrb->exc) {
     mrb_print_error(mrb);
