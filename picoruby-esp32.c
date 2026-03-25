@@ -10,7 +10,11 @@
 #include "hal.h" // in picoruby-machine
 #endif
 
+#if defined(PICORB_VM_MRUBYC)
 #include "mrb/main_task.c"
+#elif defined(PICORB_VM_MRUBY)
+#include "mrb/main_task_microruby.c"
+#endif
 
 #ifndef HEAP_SIZE
 #if defined(CONFIG_SPIRAM)
@@ -75,7 +79,7 @@ picoruby_esp32(void)
 #elif defined(PICORB_VM_MRUBY)
   mrb_state *mrb = mrb_open_with_custom_alloc(heap_pool, HEAP_SIZE);
   global_mrb = mrb;
-  mrc_irep *irep = mrb_read_irep(mrb, main_task);
+  mrc_irep *irep = mrb_read_irep(mrb, main_task_microruby);
   mrc_ccontext *cc = mrc_ccontext_new(mrb);
   mrb_value name = mrb_str_new_lit(mrb, "R2P2");
   mrb_value task = mrc_create_task(cc, irep, name, mrb_nil_value(), mrb_obj_value(mrb->top_self));

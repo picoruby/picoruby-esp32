@@ -41,7 +41,7 @@ MRuby::CrossBuild.new('esp32-microruby') do |conf|
   conf.gem gemdir: '../picoruby/mrbgems/picoruby-mruby/lib/mruby/mrbgems/mruby-sprintf'
   conf.gem gemdir: '../picoruby/mrbgems/picoruby-mruby/lib/mruby/mrbgems/mruby-math'
 
-  conf.gembox 'shell'
+  # conf.gembox 'shell'
 
   # stdlib
   conf.gem core: 'picoruby-rng'

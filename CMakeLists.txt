@@ -135,7 +135,12 @@ add_custom_target(
 add_dependencies(${COMPONENT_LIB} ${CUSTOM_TARGET_NAME})
 
 # Compile Ruby files
-set(RUBY_FILES main_task)
+if(${PICORB_VM} STREQUAL "mruby")
+  set(RUBY_FILES main_task_microruby)
+else()
+  set(RUBY_FILES main_task)
+endif()
+
 set(PICORBC ${COMPONENT_DIR}/picoruby/bin/picorbc)
 set(GENERATED_C_FILES "")
 
