@@ -3,6 +3,12 @@
 #include <esp_heap_caps.h>
 #include <esp_psram.h>
 #include "picoruby.h"
+#include "sdkconfig.h"
+#include "driver/uart_vfs.h"
+#if defined(CONFIG_ESP_CONSOLE_SECONDARY_USB_SERIAL_JTAG) || \
+    defined(CONFIG_ESP_CONSOLE_USB_SERIAL_JTAG)
+#include "driver/usb_serial_jtag_vfs.h"
+#endif
 
 #if defined(PICORB_VM_MRUBYC)
 #include <mrubyc.h>
@@ -30,6 +36,17 @@ mrb_state *global_mrb = NULL;
 void
 setup(void)
 {
+  /* Disable VFS line ending conversion globally (TX and RX) so that binary
+   * data is never mangled. Terminal emulators that require CRLF on TX should
+   * handle it on the host side. This matches the RP2040 behaviour. */
+  uart_vfs_dev_port_set_tx_line_endings(CONFIG_ESP_CONSOLE_UART_NUM, ESP_LINE_ENDINGS_LF);
+  uart_vfs_dev_port_set_rx_line_endings(CONFIG_ESP_CONSOLE_UART_NUM, ESP_LINE_ENDINGS_LF);
+#if defined(CONFIG_ESP_CONSOLE_SECONDARY_USB_SERIAL_JTAG) || \
+    defined(CONFIG_ESP_CONSOLE_USB_SERIAL_JTAG)
+  usb_serial_jtag_vfs_set_tx_line_endings(ESP_LINE_ENDINGS_LF);
+  usb_serial_jtag_vfs_set_rx_line_endings(ESP_LINE_ENDINGS_LF);
+#endif
+
   esp_err_t ret = nvs_flash_init();
   if (ret == ESP_ERR_NVS_NO_FREE_PAGES || ret == ESP_ERR_NVS_NEW_VERSION_FOUND) {
     ESP_ERROR_CHECK(nvs_flash_erase());
