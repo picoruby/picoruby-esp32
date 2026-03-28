@@ -10,6 +10,7 @@ MRuby::CrossBuild.new('esp32-microruby') do |conf|
   conf.cc.flags << '-Wno-format'
   conf.cc.flags << '-Wno-unused-function'
   conf.cc.flags << '-Wno-maybe-uninitialized'
+  conf.cc.flags << "-mabi=ilp32f" if %w[esp32p4].include? ENV['CONFIG_IDF_TARGET']
 
   conf.cc.defines << 'MRB_TICK_UNIT=10'
   conf.cc.defines << 'MRB_TIMESLICE_TICK_COUNT=1'

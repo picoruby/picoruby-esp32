@@ -107,11 +107,17 @@ add_definitions(
 set(PICORUBY_DIR ${COMPONENT_DIR}/picoruby)
 set(LIBMRUBY_FILE ${PICORUBY_DIR}/build/${LIBMRUBY_PATH}/lib/libmruby.a)
 
+# Expose sdkconfig values to build config via env vars
+set(MRUBY_ENV
+  MRUBY_CONFIG=${MRUBY_CONFIG_STRING}
+  CONFIG_IDF_TARGET=${CONFIG_IDF_TARGET}
+)
+
 # Build PicoRuby
 add_custom_command(
   OUTPUT ${LIBMRUBY_FILE}
-  COMMAND ${CMAKE_COMMAND} -E echo "MRUBY_CONFIG=${MRUBY_CONFIG_STRING} rake"
-  COMMAND ${CMAKE_COMMAND} -E env MRUBY_CONFIG=${MRUBY_CONFIG_STRING} rake
+  COMMAND ${CMAKE_COMMAND} -E echo ${MRUBY_ENV} rake
+  COMMAND ${CMAKE_COMMAND} -E env ${MRUBY_ENV} rake
   WORKING_DIRECTORY ${PICORUBY_DIR}
   COMMENT "PicoRuby build"
   VERBATIM
