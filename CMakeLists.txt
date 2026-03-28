@@ -93,6 +93,7 @@ idf_component_register(
     nvs_flash
     esp_wifi
     esp_psram
+    esp_driver_usb_serial_jtag
 )
 
 add_definitions(
