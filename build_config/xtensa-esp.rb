@@ -1,9 +1,9 @@
 MRuby::CrossBuild.new("esp32") do |conf|
   conf.toolchain("gcc")
 
-  conf.cc.command = "xtensa-esp32-elf-gcc"
-  conf.linker.command = "xtensa-esp32-elf-ld"
-  conf.archiver.command = "xtensa-esp32-elf-ar"
+  conf.cc.command = "xtensa-#{ENV['CONFIG_IDF_TARGET']}-elf-gcc"
+  conf.linker.command = "xtensa-#{ENV['CONFIG_IDF_TARGET']}-elf-ld"
+  conf.archiver.command = "xtensa-#{ENV['CONFIG_IDF_TARGET']}-elf-ar"
 
   conf.cc.host_command = "gcc"
   conf.cc.flags << "-Wall"
