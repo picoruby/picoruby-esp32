@@ -1,16 +1,16 @@
 MRuby::CrossBuild.new("esp32") do |conf|
   conf.toolchain("gcc")
 
-  conf.cc.command = "riscv32-esp-elf-gcc"
-  conf.linker.command = "riscv32-esp-elf-ld"
-  conf.archiver.command = "riscv32-esp-elf-ar"
+  conf.cc.command = "xtensa-esp32-elf-gcc"
+  conf.linker.command = "xtensa-esp32-elf-ld"
+  conf.archiver.command = "xtensa-esp32-elf-ar"
 
   conf.cc.host_command = "gcc"
   conf.cc.flags << "-Wall"
   conf.cc.flags << "-Wno-format"
   conf.cc.flags << "-Wno-unused-function"
   conf.cc.flags << "-Wno-maybe-uninitialized"
-  conf.cc.flags << "-mabi=ilp32f" if %w[esp32p4].include? ENV['CONFIG_IDF_TARGET']
+  conf.cc.flags << "-mlongcalls"
 
   conf.cc.defines << "MRBC_TICK_UNIT=10"
   conf.cc.defines << "MRBC_TIMESLICE_TICK_COUNT=1"
@@ -20,6 +20,7 @@ MRuby::CrossBuild.new("esp32") do |conf|
   conf.cc.defines << "ESP32_PLATFORM"
   conf.cc.defines << "PICORB_INT64"
   conf.cc.defines << "NDEBUG"
+  conf.cc.defines << "CONFIG_ESP_WIFI_ENABLED"
 
   conf.picoruby(alloc_libc: false)
   conf.gembox 'minimum'
@@ -43,5 +44,9 @@ MRuby::CrossBuild.new("esp32") do |conf|
   conf.gem core: 'picoruby-esp32'
   conf.gem core: 'picoruby-rmt'
   conf.gem core: 'picoruby-mbedtls'
+  conf.gem core: 'picoruby-socket'
+  conf.gem core: 'picoruby-network'
+  conf.gem core: 'picoruby-net-mqtt'
   conf.gem core: 'picoruby-adafruit_sk6812'
+  conf.gem core: 'picoruby-net-ntp'
 end

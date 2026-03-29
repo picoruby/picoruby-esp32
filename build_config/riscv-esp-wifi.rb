@@ -20,6 +20,7 @@ MRuby::CrossBuild.new("esp32") do |conf|
   conf.cc.defines << "ESP32_PLATFORM"
   conf.cc.defines << "PICORB_INT64"
   conf.cc.defines << "NDEBUG"
+  conf.cc.defines << "CONFIG_ESP_WIFI_ENABLED"
 
   conf.picoruby(alloc_libc: false)
   conf.gembox 'minimum'
@@ -43,5 +44,9 @@ MRuby::CrossBuild.new("esp32") do |conf|
   conf.gem core: 'picoruby-esp32'
   conf.gem core: 'picoruby-rmt'
   conf.gem core: 'picoruby-mbedtls'
+  conf.gem core: 'picoruby-socket'
+  conf.gem core: 'picoruby-network'
+  conf.gem core: 'picoruby-net-mqtt'
   conf.gem core: 'picoruby-adafruit_sk6812'
+  conf.gem core: 'picoruby-net-ntp'
 end

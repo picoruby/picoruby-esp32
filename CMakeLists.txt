@@ -3,6 +3,11 @@ message(STATUS "PICORB_VM is set to: ${PICORB_VM}")
 
 file(MAKE_DIRECTORY ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-mbedtls/lib/mbedtls/include)
 
+set(WIFI_SUFFIX "")
+if(CONFIG_ESP_WIFI_ENABLED)
+  set(WIFI_SUFFIX "-wifi")
+endif()
+
 if(${PICORB_VM} STREQUAL "mruby")
   file(MAKE_DIRECTORY ${COMPONENT_DIR}/picoruby/build/esp32-microruby/include)
   set(MRUBY_CONFIG_STRING "${COMPONENT_DIR}/build_config/${IDF_TARGET_ARCH}-esp-microruby.rb")
@@ -20,7 +25,7 @@ if(${PICORB_VM} STREQUAL "mruby")
   )
 else()
   file(MAKE_DIRECTORY ${COMPONENT_DIR}/picoruby/build/esp32/mrbgems)
-  set(MRUBY_CONFIG_STRING "${COMPONENT_DIR}/build_config/${IDF_TARGET_ARCH}-esp.rb")
+  set(MRUBY_CONFIG_STRING "${COMPONENT_DIR}/build_config/${IDF_TARGET_ARCH}-esp${WIFI_SUFFIX}.rb")
   set(LIBMRUBY_PATH "esp32")
   set(CUSTOM_TARGET_NAME "picoruby")
   set(ADDITIONAL_INCLUDE_DIRS
@@ -33,6 +38,10 @@ else()
     -DMRC_CUSTOM_ALLOC
     -DPICORB_VM_MRUBYC
   )
+endif()
+
+if(CONFIG_ESP_WIFI_ENABLED)
+  list(APPEND ADDITIONAL_DEFINITIONS -DCONFIG_ESP_WIFI_ENABLED)
 endif()
 
 idf_component_register(
