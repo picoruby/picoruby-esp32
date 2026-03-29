@@ -3,11 +3,6 @@ message(STATUS "PICORB_VM is set to: ${PICORB_VM}")
 
 file(MAKE_DIRECTORY ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-mbedtls/lib/mbedtls/include)
 
-set(WIFI_SUFFIX "")
-if(CONFIG_ESP_WIFI_ENABLED)
-  set(WIFI_SUFFIX "-wifi")
-endif()
-
 if(${PICORB_VM} STREQUAL "mruby")
   file(MAKE_DIRECTORY ${COMPONENT_DIR}/picoruby/build/esp32-microruby/include)
   set(MRUBY_CONFIG_STRING "${COMPONENT_DIR}/build_config/${IDF_TARGET_ARCH}-esp-microruby.rb")
@@ -25,7 +20,7 @@ if(${PICORB_VM} STREQUAL "mruby")
   )
 else()
   file(MAKE_DIRECTORY ${COMPONENT_DIR}/picoruby/build/esp32/mrbgems)
-  set(MRUBY_CONFIG_STRING "${COMPONENT_DIR}/build_config/${IDF_TARGET_ARCH}-esp${WIFI_SUFFIX}.rb")
+  set(MRUBY_CONFIG_STRING "${COMPONENT_DIR}/build_config/${IDF_TARGET_ARCH}-esp.rb")
   set(LIBMRUBY_PATH "esp32")
   set(CUSTOM_TARGET_NAME "picoruby")
   set(ADDITIONAL_INCLUDE_DIRS
@@ -120,6 +115,7 @@ set(LIBMRUBY_FILE ${PICORUBY_DIR}/build/${LIBMRUBY_PATH}/lib/libmruby.a)
 set(MRUBY_ENV
   MRUBY_CONFIG=${MRUBY_CONFIG_STRING}
   CONFIG_IDF_TARGET=${CONFIG_IDF_TARGET}
+  CONFIG_ESP_WIFI_ENABLED=${CONFIG_ESP_WIFI_ENABLED}
 )
 
 # Build PicoRuby
