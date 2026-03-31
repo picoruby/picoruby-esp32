@@ -20,7 +20,7 @@ MRuby::CrossBuild.new("esp32") do |conf|
   conf.cc.defines << "ESP32_PLATFORM"
   conf.cc.defines << "PICORB_INT64"
   conf.cc.defines << "NDEBUG"
-  conf.cc.defines << "CONFIG_ESP_WIFI_ENABLED" if ENV['CONFIG_ESP_WIFI_ENABLED']
+  conf.cc.defines << "CONFIG_ESP_WIFI_ENABLED" unless ENV['CONFIG_ESP_WIFI_ENABLED'].to_s.empty?
 
   conf.picoruby(alloc_libc: false)
   conf.gembox 'minimum'
