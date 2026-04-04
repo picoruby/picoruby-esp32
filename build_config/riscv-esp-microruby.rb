@@ -28,7 +28,7 @@ MRuby::CrossBuild.new('esp32-microruby') do |conf|
     conf.enable_debug
   end
 
-  conf.microruby
+  conf.picoruby
   conf.gembox 'minimum'
   conf.gembox 'core'
 
