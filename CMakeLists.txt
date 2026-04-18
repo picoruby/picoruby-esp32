@@ -22,7 +22,7 @@ if(${PICORB_VM} STREQUAL "mruby")
   )
 else()
   file(MAKE_DIRECTORY ${COMPONENT_DIR}/picoruby/build/esp32/mrbgems)
-  set(MRUBY_CONFIG_STRING "${COMPONENT_DIR}/build_config/${IDF_TARGET_ARCH}-esp.rb")
+  set(MRUBY_CONFIG_STRING "${COMPONENT_DIR}/build_config/${IDF_TARGET_ARCH}-esp-femtoruby.rb")
   set(LIBMRUBY_PATH "esp32")
   set(CUSTOM_TARGET_NAME "picoruby")
   set(ADDITIONAL_INCLUDE_DIRS
