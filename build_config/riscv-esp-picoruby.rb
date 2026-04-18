@@ -1,4 +1,4 @@
-MRuby::CrossBuild.new('esp32-microruby') do |conf|
+MRuby::CrossBuild.new('esp32-picoruby') do |conf|
   conf.toolchain('gcc')
 
   conf.cc.command = 'riscv32-esp-elf-gcc'

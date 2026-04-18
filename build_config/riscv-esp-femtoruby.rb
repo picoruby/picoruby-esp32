@@ -1,4 +1,4 @@
-MRuby::CrossBuild.new("esp32") do |conf|
+MRuby::CrossBuild.new("esp32-femtoruby") do |conf|
   conf.toolchain("gcc")
 
   conf.cc.command = "riscv32-esp-elf-gcc"
