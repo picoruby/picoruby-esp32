@@ -4,12 +4,12 @@ message(STATUS "PICORB_VM is set to: ${PICORB_VM}")
 file(MAKE_DIRECTORY ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-mbedtls/lib/mbedtls/include)
 
 if(${PICORB_VM} STREQUAL "mruby")
-  file(MAKE_DIRECTORY ${COMPONENT_DIR}/picoruby/build/esp32-microruby/include)
-  set(MRUBY_CONFIG_STRING "${COMPONENT_DIR}/build_config/${IDF_TARGET_ARCH}-esp-microruby.rb")
-  set(LIBMRUBY_PATH "esp32-microruby")
-  set(CUSTOM_TARGET_NAME "microruby")
+  file(MAKE_DIRECTORY ${COMPONENT_DIR}/picoruby/build/esp32-picoruby/include)
+  set(MRUBY_CONFIG_STRING "${COMPONENT_DIR}/build_config/${IDF_TARGET_ARCH}-esp-picoruby.rb")
+  set(LIBMRUBY_PATH "esp32-picoruby")
+  set(CUSTOM_TARGET_NAME "picoruby")
   set(ADDITIONAL_INCLUDE_DIRS
-    ${COMPONENT_DIR}/picoruby/build/esp32-microruby/include
+    ${COMPONENT_DIR}/picoruby/build/esp32-picoruby/include
     ${COMPONENT_DIR}/picoruby/mrbgems/picoruby-mruby/lib/mruby/include
   )
   set(ADDITIONAL_DEFINITIONS
@@ -21,12 +21,12 @@ if(${PICORB_VM} STREQUAL "mruby")
     -DPICORB_VM_MRUBY
   )
 else()
-  file(MAKE_DIRECTORY ${COMPONENT_DIR}/picoruby/build/esp32/mrbgems)
+  file(MAKE_DIRECTORY ${COMPONENT_DIR}/picoruby/build/esp32-femtoruby/mrbgems)
   set(MRUBY_CONFIG_STRING "${COMPONENT_DIR}/build_config/${IDF_TARGET_ARCH}-esp-femtoruby.rb")
-  set(LIBMRUBY_PATH "esp32")
+  set(LIBMRUBY_PATH "esp32-femtoruby")
   set(CUSTOM_TARGET_NAME "picoruby")
   set(ADDITIONAL_INCLUDE_DIRS
-    ${COMPONENT_DIR}/picoruby/build/esp32/mrbgems
+    ${COMPONENT_DIR}/picoruby/build/esp32-femtoruby/mrbgems
   )
   set(ADDITIONAL_DEFINITIONS
     -DMRBC_TICK_UNIT=10
