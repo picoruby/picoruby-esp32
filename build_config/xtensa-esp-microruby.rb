@@ -15,7 +15,9 @@ MRuby::CrossBuild.new('esp32-microruby') do |conf|
   conf.cc.defines << 'MRB_TICK_UNIT=10'
   conf.cc.defines << 'MRB_TIMESLICE_TICK_COUNT=1'
   conf.cc.defines << 'MRBC_CONVERT_CRLF=1'
+  conf.cc.defines << 'MRB_UTF8_STRING'
   conf.cc.defines << 'MRB_INT64'
+  conf.cc.defines << 'MRB_NO_BOXING'
   conf.cc.defines << 'MRB_32BIT'
   conf.cc.defines << 'PICORB_ALLOC_ESTALLOC'
   conf.cc.defines << 'PICORB_ALLOC_ALIGN=8'
@@ -31,7 +33,6 @@ MRuby::CrossBuild.new('esp32-microruby') do |conf|
   conf.picoruby
   conf.gembox 'minimum'
   conf.gembox 'core'
-
   conf.gem gemdir: '../picoruby/mrbgems/picoruby-mruby/lib/mruby/mrbgems/mruby-kernel-ext'
   conf.gem gemdir: '../picoruby/mrbgems/picoruby-mruby/lib/mruby/mrbgems/mruby-string-ext'
   conf.gem gemdir: '../picoruby/mrbgems/picoruby-mruby/lib/mruby/mrbgems/mruby-array-ext'
@@ -40,9 +41,7 @@ MRuby::CrossBuild.new('esp32-microruby') do |conf|
   conf.gem gemdir: '../picoruby/mrbgems/picoruby-mruby/lib/mruby/mrbgems/mruby-error'
   conf.gem gemdir: '../picoruby/mrbgems/picoruby-mruby/lib/mruby/mrbgems/mruby-sprintf'
   conf.gem gemdir: '../picoruby/mrbgems/picoruby-mruby/lib/mruby/mrbgems/mruby-math'
-
   conf.gem core: 'picoruby-esp32'
-
   conf.gembox 'shell'
 
   # stdlib
