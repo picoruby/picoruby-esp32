@@ -1,5 +1,11 @@
 # PicoRuby on ESP32
 
+> [!IMPORTANT]
+> **This repository has been archived.**
+>
+> - This repository has been merged into [picoruby/R2P2-ESP32](https://github.com/picoruby/R2P2-ESP32).
+> - The repository itself will remain available for those who want to incorporate PicoRuby as a library with ESP-IDF.
+
 This is a component that can be used with ESP-IDF, allowing you to add [PicoRuby](https://github.com/picoruby/picoruby) to your project.
 
 ## Getting Started
